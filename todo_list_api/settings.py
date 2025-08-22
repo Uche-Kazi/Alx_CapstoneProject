@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     # Your project apps
     'users', # Your new users app
+    'tasks', # Users tasks
 ]
 
 MIDDLEWARE = [
