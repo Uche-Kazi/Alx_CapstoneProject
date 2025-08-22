@@ -1,4 +1,4 @@
-# ~/Alx_CapstoneProject/users/backends.py
+# users/backends.py
 
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model
@@ -21,3 +21,14 @@ class EmailOrUsernameModelBackend(ModelBackend):
         if user.check_password(password):
             return user # Authentication successful
         return None # Password did not match
+
+    def get_user(self, user_id):
+        """
+        Required for the authentication system to retrieve a user given a user ID.
+        """
+        UserModel = get_user_model()
+        try:
+            return UserModel.objects.get(pk=user_id)
+        except UserModel.DoesNotExist:
+            return None
+
