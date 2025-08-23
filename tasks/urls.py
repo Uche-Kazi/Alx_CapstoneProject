@@ -1,15 +1,16 @@
 # ~/Alx_CapstoneProject/tasks/urls.py
 
 from django.urls import path
-from tasks import views
+from . import views # Changed to '.' for relative import which is common
 
-# Define app_name for namespacing URLs
-app_name = 'tasks'
+app_name = 'tasks' # Namespace for the URLs
 
 urlpatterns = [
     # URL for listing all tasks and creating a new task
-    path('tasks/', views.TaskListCreateAPIView.as_view(), name='task-list-create'),
+    # This will now match /api/tasks/
+    path('', views.TaskListCreateAPIView.as_view(), name='task-list-create'),
 
     # URL for retrieving, updating, or deleting a specific task by its ID
-    path('tasks/<int:pk>/', views.TaskRetrieveUpdateDestroyAPIView.as_view(), name='task-detail'),
+    # This will now match /api/tasks/<int:pk>/
+    path('<int:pk>/', views.TaskRetrieveUpdateDestroyAPIView.as_view(), name='task-detail'),
 ]
